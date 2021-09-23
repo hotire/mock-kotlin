@@ -8,7 +8,10 @@ import java.util.Arrays
 import java.util.stream.Collectors
 import kotlin.reflect.KClass
 
-data class MockkHelper(val mockMap: MutableMap<KClass<*>, Any> = mutableMapOf()) {
+data class MockkHelper(
+    val mockMap: MutableMap<KClass<*>, Any> = mutableMapOf(),
+    val annotations: List<Class<out Annotation>> = listOf(Autowired::class.java),
+) {
     fun clear() = mockMap.clear()
 
     inline fun <reified T : Any> createInstanceWithMock(): T {
@@ -83,4 +86,3 @@ data class MockkHelper(val mockMap: MutableMap<KClass<*>, Any> = mutableMapOf())
         return fields
     }
 }
-

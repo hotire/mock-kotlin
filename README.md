@@ -2,6 +2,10 @@
 
 git : https://github.com/mockk/mockk
 
+### Getting Started 
+
+https://blog.naver.com/gngh0101/222545336054
+
 ### Mocking is not rocket science: Basics
 
 https://blog.kotlin-academy.com/mocking-is-not-rocket-science-basics-ae55d0aadf2b

@@ -4,7 +4,7 @@ import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
@@ -15,14 +15,15 @@ internal class CarTest {
     fun drive() {
         // given
         val car = mockk<Car>()
+        val expected = "OK"
 
         // when
-        every { car.drive(Direction.NORTH) } returns "OK"
+        every { car.drive(Direction.NORTH) } returns expected
         val result = car.drive(Direction.NORTH)
 
         // then
         verify { car.drive(Direction.NORTH) }
-        Assertions.assertThat(result).isEqualTo("OK")
+        assertThat(result).isEqualTo(expected)
         confirmVerified(car)
     }
 
@@ -30,10 +31,11 @@ internal class CarTest {
     fun driveWithMockitoKotlin() {
         // given
         val car = mock<Car>()
+        val expected = "OK"
 
         // when
-        whenever(car.drive(Direction.NORTH)).thenReturn("OK")
+        whenever(car.drive(Direction.NORTH)).thenReturn(expected)
         val result = car.drive(Direction.NORTH)
-        Assertions.assertThat(result).isEqualTo("OK")
+        assertThat(result).isEqualTo(expected)
     }
 }

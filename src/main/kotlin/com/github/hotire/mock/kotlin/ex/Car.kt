@@ -12,4 +12,6 @@ enum class Direction {
     NORTH
 }
 
-data class TrafficSystem(var car1: Car, var car2: Car, var car3: Car)
+data class TrafficSystem(
+    var carGroup: MutableList<Car> = mutableListOf()
+)

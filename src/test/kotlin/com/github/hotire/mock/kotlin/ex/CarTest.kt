@@ -7,6 +7,8 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
 
 internal class CarTest {
@@ -17,12 +19,16 @@ internal class CarTest {
         val car = mockk<Car>()
         val expected = "OK"
 
-        // when
         every { car.drive(Direction.NORTH) } returns expected
-        val result = car.drive(Direction.NORTH)
 
+        // when
+        val result = car.drive(Direction.NORTH)
+        car.toString()
         // then
-        verify { car.drive(Direction.NORTH) }
+        verify(exactly = 1) {
+            car.drive(Direction.NORTH)
+//            car.toString()
+        }
         assertThat(result).isEqualTo(expected)
         confirmVerified(car)
     }
@@ -32,10 +38,14 @@ internal class CarTest {
         // given
         val car = mock<Car>()
         val expected = "OK"
-
-        // when
         whenever(car.drive(Direction.NORTH)).thenReturn(expected)
+//        car.stop()
+        // when
         val result = car.drive(Direction.NORTH)
+
+        // then 
         assertThat(result).isEqualTo(expected)
+        org.mockito.kotlin.verify(car, times(1)).drive(Direction.NORTH)
+        verifyNoMoreInteractions(car)
     }
 }

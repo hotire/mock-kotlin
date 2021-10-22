@@ -1,0 +1,39 @@
+public final class MySub extends MyRoot
+{
+
+    public MySub()
+    {
+    }
+
+    public final String sub()
+    {
+        if(getClass() != java/util/HashMap) goto _L2; else goto _L1
+_L1:
+        if((new Object[0]).length != 1 || (new Object[0])[0] != java/util/HashMap) goto _L4; else goto _L3
+_L3:
+        null;
+          goto _L5
+_L4:
+        if((new Object[0]).length != 2 || (new Object[0])[1] != java/util/HashMap) goto _L2; else goto _L6
+_L6:
+        null;
+          goto _L5
+_L2:
+        Object obj = JvmMockKDispatcher.get(0xbc2be2771772d27cL, this);
+        obj != null && ((JvmMockKDispatcher) (obj)).isMock(this) ? ((JvmMockKDispatcher) (obj)).handler(this, com/github/hotire/mock/kotlin/class_test/MySub.getMethod("sub", new Class[0]), new Object[0]) : null;
+_L5:
+        obj;
+        MySub this;
+        if(obj != null)
+        {
+            this = null;
+        } else
+        {
+            this = this;
+            this = "sub";
+        }
+        if(obj != null)
+            this = (String)((Callable) (obj)).call();
+        return this;
+    }
+ }

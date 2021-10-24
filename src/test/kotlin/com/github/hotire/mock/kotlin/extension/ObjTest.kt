@@ -15,9 +15,25 @@ internal class ObjTest {
         mockkStatic(Obj::extensionProperty)
 
         every { obj.extensionProperty } returns expected
-        
+
         // when
         val result = obj.extensionProperty
+
+        // then
+        assertThat(result).isEqualTo(expected)
+    }
+
+    @Test
+    fun extensionFunc() {
+        // given
+        val obj = Obj(4)
+        val expected = 3
+        mockkStatic(Obj::extensionFunc)
+
+        every { obj.extensionFunc() } returns expected
+
+        // when
+        val result = obj.extensionFunc()
 
         // then
         assertThat(result).isEqualTo(expected)
